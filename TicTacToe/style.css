@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+    font-family: helvetica;
+  }
+
+  :root {
+    --square-size: 100px;
+    --mark-size: calc(var(--square-size) * .7);
+  }
+  body {
+    margin: 0;
+  }
+
+  .grid {
+    width: 100vw;
+    height: 70vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+  }
+
+  .square {
+    width: var(--square-size);
+    height: var(--square-size);
+    border: 5px solid purple;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  button {
+    margin-top: 20px;
+    margin-left: 47%;
+    margin-bottom: 10%;
+    padding: 15px;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: white;
+    color: black;
+  }
+
+.square.x::before,
+.square.x::after,
+.square.circle::before {
+  background-color: black;
+}
+
+.square.x::before,
+.square.x::after,
+.grid.x .square:not(.x):not(.circle),
+.grid.x .square:not(.x):not(.circle) {
+  content: '';
+  position: absolute;
+  width: calc(var(--mark-size) * .15);
+  height: var(--mark-size);
+}
+
+.square.x::before,
+.board.x .square:not(.x):not(.circle) {
+  transform: rotate(45deg);
+}
+
+.square.x::after,
+.grid.x .square:not(.x):not(.circle) {
+  transform: rotate(-45deg);
+}
+
+.square.circle::before,
+.square.circle::after,
+.grid.circle .square:not(.x):not(.circle),
+.grid.circle .square:not(.x):not(.circle) {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+}
+
+.square.circle::before,
+.grid.circle .square:not(.x):not(.circle) {
+  width: var(--mark-size);
+  height: var(--mark-size);
+}
+
+.square.circle::after,
+.grid.circle .square:not(.x):not(.circle) {
+  width: calc(var(--mark-size) * .7);
+  height: calc(var(--mark-size) * .7);
+  background-color: white;
+}
